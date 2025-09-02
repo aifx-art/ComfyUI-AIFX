@@ -3,20 +3,53 @@ import { app } from "../../scripts/app.js";
 app.registerExtension({
   name: "aifx",
     // Define commands
+//   commands: [
+//     { 
+//       id: "myCommand", 
+//       label: "My Command", 
+//       function: () => { alert("Command executed!"); } 
+//     }
+//   ],
   commands: [
-    { 
-      id: "myCommand", 
-      label: "My Command", 
-      function: () => { alert("Command executed!"); } 
+    {
+      id: "runWorkflow",
+      label: "Run Workflow",
+      function: () => {
+        app.queuePrompt();
+      }
+    },
+    {
+      id: "clearWorkflow",
+      label: "Clear Workflow",
+      function: () => {
+        if (confirm("Clear the workflow?")) {
+          app.graph.clear();
+        }
+      }
+    },
+    {
+      id: "saveWorkflow",
+      label: "Save Workflow",
+      function: () => {
+        app.graphToPrompt().then(workflow => {
+          const blob = new Blob([JSON.stringify(workflow)], {type: "application/json"});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "workflow.json";
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+      }
     }
   ],
   // Add commands to menu
-  menuCommands: [
-    { 
-      path: ["aifx"], 
-      commands: ["myCommand"] 
-    }
-  ],
+//   menuCommands: [
+//     { 
+//       path: ["aifx"], 
+//       commands: ["myCommand"] 
+//     }
+//   ],
   async setup() {
     // const renderButton = new ComfyButton({
     //   icon: "aifx",
