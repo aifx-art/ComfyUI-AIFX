@@ -13,7 +13,7 @@ app.registerExtension({
   // Add commands to menu
   menuCommands: [
     { 
-      path: ["Extensions", "aifx"], 
+      path: ["aifx"], 
       commands: ["myCommand"] 
     }
   ],
