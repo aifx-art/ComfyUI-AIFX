@@ -2,27 +2,19 @@ import { app } from "../../scripts/app.js";
 
 app.registerExtension({
   name: "aifx",
-   commands: [
+    // Define commands
+  commands: [
     { 
-      id: "saveAsImage", 
-      label: "Save as Image", 
-      function: () => { 
-        // Code to save canvas as image
-      } 
-    },
-    { 
-      id: "exportWorkflow", 
-      label: "Export Workflow", 
-      function: () => { 
-        // Code to export workflow
-      } 
+      id: "myCommand", 
+      label: "My Command", 
+      function: () => { alert("Command executed!"); } 
     }
   ],
+  // Add commands to menu
   menuCommands: [
-    // Add to File menu
     { 
-      path: ["File"], 
-      commands: ["saveAsImage", "exportWorkflow"] 
+      path: ["Extensions", "aifx"], 
+      commands: ["myCommand"] 
     }
   ],
   async setup() {
