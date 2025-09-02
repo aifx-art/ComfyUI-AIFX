@@ -17,7 +17,7 @@ function addSimpleButton() {
     enabled: true,
     classList: "comfyui-button comfyui-menu-mobile-collapse primary",
   });
-  button.iconElement.innerHTML = "AIFX"; //
+  button.iconElement.innerHTML = "⭐";
   // Add a click handler
   button.element.addEventListener("click", () => {
     alert("Hello from AIFX!");
