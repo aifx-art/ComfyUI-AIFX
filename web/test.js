@@ -11,7 +11,7 @@ function addSimpleButton() {
 
   // Create a button
   const button = new ComfyButton({
-    icon: "⭐", // you can use an emoji or leave blank
+    icon: "AIFX", // you can use an emoji or leave blank
     tooltip: "Click me!",
     app,
     enabled: true,
@@ -20,7 +20,7 @@ function addSimpleButton() {
 
   // Add a click handler
   button.element.addEventListener("click", () => {
-    alert("Hello from Comfy!");
+    alert("Hello from AIFX!");
   });
 
   // Wrap in a button group (required by ComfyUI’s menu system)
