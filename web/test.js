@@ -18,12 +18,11 @@ function addSimpleButton() {
     classList: "comfyui-button comfyui-menu-mobile-collapse primary",
   });
 button.iconElement.innerHTML = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 30" width="60" height="20" fill="currentColor">
-  <path d="M5 25 L10 5 L15 25 Z" /> <!-- A -->
-  <path d="M25 5 H35 V15 H25 Z M25 15 H35 V25 H25 Z" /> <!-- I (just a box here for demo) -->
-  <path d="M45 5 H65 V25 H45 Z" /> <!-- F -->
-  <path d="M75 25 L85 5 L95 25 Z" /> <!-- X -->
-</svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+       fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+    <text x="0" y="15" font-size="14" font-family="Arial" fill="currentColor">AIFX</text>
+  </svg>
 `;
   // Add a click handler
   button.element.addEventListener("click", () => {
