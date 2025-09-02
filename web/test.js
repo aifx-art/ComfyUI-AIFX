@@ -6,32 +6,33 @@ import { ComfyButtonGroup } from "../../scripts/ui/components/buttonGroup.js";
 let simpleButtonGroup = null;
 
 function handleClickRender(app) {
-  const workflow = app.graph.serialize();
-  workflow.version = 1.0; // Add required version field
+//   const workflow = app.graph.serialize();
+//   workflow.version = 1.0; // Add required version field
 
-  const blob = new Blob([JSON.stringify(workflow)], {
-    type: "application/json",
-  });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "workflow.json";
-  a.click();
-  URL.revokeObjectURL(url);
+//   const blob = new Blob([JSON.stringify(workflow)], {
+//     type: "application/json",
+//   });
+//   const url = URL.createObjectURL(blob);
+//   const a = document.createElement("a");
+//   a.href = url;
+//   a.download = "workflow.json";
+//   a.click();
+//   URL.revokeObjectURL(url);
 
   //alert("Hello!");
   //console.log(app);
-  //   app.graphToPrompt().then((workflow) => {
-  //     const blob = new Blob([JSON.stringify(workflow)], {
-  //       type: "application/json",
-  //     });
-  //     const url = URL.createObjectURL(blob);
-  //     const a = document.createElement("a");
-  //     a.href = url;
-  //     a.download = "workflow.json";
-  //     a.click();
-  //     URL.revokeObjectURL(url);
-  //   });
+    app.graphToPrompt().then((workflow) => {
+      workflow.version = 1.0;
+      const blob = new Blob([JSON.stringify(workflow)], {
+        type: "application/json",
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "workflow.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
 }
 
 function addSimpleButton() {
