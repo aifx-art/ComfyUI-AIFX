@@ -17,7 +17,11 @@ function addSimpleButton() {
     enabled: true,
     classList: "comfyui-button comfyui-menu-mobile-collapse primary",
   });
-  button.iconElement.innerHTML = "⭐";
+ button.iconElement.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 20" width="40" height="20">
+            <text x="0" y="15" font-size="14" font-family="Arial, sans-serif" fill="currentColor">AIFX</text>
+        </svg>
+    `;
   // Add a click handler
   button.element.addEventListener("click", () => {
     alert("Hello from AIFX!");
