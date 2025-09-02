@@ -11,7 +11,7 @@ function addSimpleButton() {
 
   // Create a button
   const button = new ComfyButton({
-    icon: "", // you can use an emoji or leave blank
+    icon: "wand", // you can use an emoji or leave blank
     tooltip: "Click me!",
     app,
     enabled: true,
