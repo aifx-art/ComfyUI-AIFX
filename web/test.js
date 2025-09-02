@@ -5,6 +5,19 @@ import { ComfyButtonGroup } from "../../scripts/ui/components/buttonGroup.js";
 
 let simpleButtonGroup = null;
 
+function handleClickRender(app) {
+     alert("Hello from AIFX!");
+     console.log(app)
+    app.graphToPrompt().then(workflow => {
+          const blob = new Blob([JSON.stringify(workflow)], {type: "application/json"});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "workflow.json";
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+}
 function addSimpleButton() {
   // If we already added the button, don’t add again
   if (simpleButtonGroup) return;
@@ -21,7 +34,8 @@ button.iconElement.textContent = "AIFX";
 
   // Add a click handler
   button.element.addEventListener("click", () => {
-    alert("Hello from AIFX!");
+   
+    handleClickRender(app)
   });
 
   // Wrap in a button group (required by ComfyUI’s menu system)
