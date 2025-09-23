@@ -42,6 +42,23 @@ async function handleClickLoad(app) {
   app.loadGraphData(workflow)
 }
 
+window.addEventListener('message', (event) => {
+  //console.log(event)
+  // Verify origin for security
+  // if (event.origin !== 'https://expected-client-domain.com') {
+  //   return;
+  // }
+  
+  if (event.data.type === 'CLIENT_DATA') {
+    console.log('Received data:', event.data.payload);
+    handleReceivedData(event.data.payload);
+  }
+});
+
+async function handleReceivedData(data) {
+  console.log(data)
+}
+
 async function handleClickRender(app) {
   //const workflow = app.graph.serialize()
   const graph = await app.graphToPrompt()
