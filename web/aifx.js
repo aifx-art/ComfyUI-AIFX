@@ -42,7 +42,7 @@ async function handleClickLoad(app) {
   app.loadGraphData(workflow)
 }
 
-window.parent.addEventListener('message', (event) => {
+window.addEventListener('message', (event) => {
   console.log(event)
   // Verify origin for security
   // if (event.origin !== 'https://expected-client-domain.com') {
