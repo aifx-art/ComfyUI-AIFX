@@ -33,9 +33,9 @@ async function postRender(data) {
   });
   console.log(res);
 }
-function handleClickRender(app) {
+async function handleClickRender(app) {
   //const workflow = app.graph.serialize()
-  const graph = app.graphToPrompt()
+  const graph = await app.graphToPrompt()
   console.log("graph", graph)
   const workflow = graph.output
   console.log("workflow", workflow)
