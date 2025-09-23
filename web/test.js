@@ -8,7 +8,7 @@ let simpleButtonGroup = null
 
 async function postRender(data) {
   const savedApiKey = localStorage.getItem("aifx-api-key")
-  alert("API KEY", savedApiKey)
+  alert(savedApiKey)
   let render = JSON.stringify(data)
   console.log("render", render)
   let res = await fetch("https://api.aifxart.com/network-render", {
@@ -171,6 +171,7 @@ function addButtons() {
   const savedApiKey = localStorage.getItem("aifx-api-key")
   if (savedApiKey) {
     apiKeyInput.value = savedApiKey
+    console.log("created button with ",apiKeyInput.value)
   }
 
   const saveButton = document.createElement("button")
