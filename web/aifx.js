@@ -35,6 +35,13 @@ async function postRender(data) {
   });
   console.log(res);
 }
+
+async function handleClickLoad(app) {
+  const workflow = app.graph.serialize()
+  app.clean()
+  app.loadGraphData(workflow)
+}
+
 async function handleClickRender(app) {
   //const workflow = app.graph.serialize()
   const graph = await app.graphToPrompt()
@@ -120,6 +127,23 @@ function addButtons() {
     handleClickRender(app);
   });
   buttons.push(button);
+
+  // load button
+  const buttonLoad = new ComfyButton({
+    icon: "file", // you can use an emoji or leave blank
+    tooltip: "Load a file",
+    app,
+    enabled: true,
+    classList: "comfyui-button comfyui-menu-mobile-collapse primary",
+  });
+  buttonLoad.iconElement.textContent = "LOAD";
+
+  // Add a click handler
+  buttonLoad.element.addEventListener("click", () => {
+    handleClickLoad(app);
+  });
+  buttons.push(buttonLoad);
+
 
   const buttonSettings = new ComfyButton({
     icon: "wand", // you can use an emoji or leave blank
