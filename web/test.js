@@ -36,7 +36,9 @@ async function postRender(data) {
 function handleClickRender(app) {
   //const workflow = app.graph.serialize()
   const graph = app.graphToPrompt()
+  console.log("graph", graph)
   const workflow = graph.output
+  console.log("workflow", workflow)
 
   let filename = "comfyfile";
   let data = {
