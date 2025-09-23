@@ -6,6 +6,8 @@ import { ComfyPopup } from "../../scripts/ui/components/popup.js";
 
 let simpleButtonGroup = null;
 
+
+// run comfy with --disable-smart-memory
 async function postRender(data) {
   const savedApiKey = localStorage.getItem("aifx-api-key")
   alert(savedApiKey)
