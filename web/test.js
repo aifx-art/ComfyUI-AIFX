@@ -1,16 +1,23 @@
-import { app } from "../../scripts/app.js"
+import { app } from "../../scripts/app.js";
 
-import { ComfyButton } from "../../scripts/ui/components/button.js"
-import { ComfyButtonGroup } from "../../scripts/ui/components/buttonGroup.js"
-import { ComfyPopup } from "../../scripts/ui/components/popup.js"
+import { ComfyButton } from "../../scripts/ui/components/button.js";
+import { ComfyButtonGroup } from "../../scripts/ui/components/buttonGroup.js";
+import { ComfyPopup } from "../../scripts/ui/components/popup.js";
 
-let simpleButtonGroup = null
+let simpleButtonGroup = null;
 
 async function postRender(data) {
+<<<<<<< HEAD
   const savedApiKey = localStorage.getItem("aifx-api-key")
   alert(savedApiKey)
   let render = JSON.stringify(data)
   console.log("render", render)
+=======
+  const savedApiKey = localStorage.getItem("aifx-api-key");
+  alert("API KEY", savedApiKey);
+  let render = JSON.stringify(data);
+  console.log("render", render);
+>>>>>>> 32a7d5048d5844e5ecec58cd564a04a116071d78
   let res = await fetch("https://api.aifxart.com/network-render", {
     //credentials: "include",
     headers: {
@@ -30,15 +37,18 @@ async function postRender(data) {
     body: render,
     method: "POST",
     //  mode: "cors",
-  })
-  console.log(res)
+  });
+  console.log(res);
 }
 function handleClickRender(app) {
-  const workflow = app.graph.serialize()
-  let filename = "comfyfile"
+  //const workflow = app.graph.serialize()
+  const graph = app.graphToPrompt()
+  const workflow = graph.output
+
+  let filename = "comfyfile";
   let data = {
     render: {
-     // id: "string",
+      // id: "string",
       status: "QUEUED",
       //notes: "string",
       //created: 0,
@@ -76,19 +86,19 @@ function handleClickRender(app) {
       //noise_divergence: 0,
       json_data: JSON.stringify(workflow, null, 2),
     },
-  }
-  postRender(data)
+  };
+  postRender(data);
 
   //save workflow
   const blob = new Blob([JSON.stringify(workflow, null, 2)], {
     type: "application/json",
-  })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement("a")
-  a.href = url
-  a.download = "workflow.json"
-  a.click()
-  URL.revokeObjectURL(url)
+  });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "workflow.json";
+  a.click();
+  URL.revokeObjectURL(url);
 
   //alert("Hello!")
   //console.log(app)
@@ -96,8 +106,8 @@ function handleClickRender(app) {
 
 function addButtons() {
   // If we already added the button, don’t add again
-  if (simpleButtonGroup) return
-  const buttons = []
+  if (simpleButtonGroup) return;
+  const buttons = [];
   // Create a button
   const button = new ComfyButton({
     icon: "share", // you can use an emoji or leave blank
@@ -105,14 +115,14 @@ function addButtons() {
     app,
     enabled: true,
     classList: "comfyui-button comfyui-menu-mobile-collapse primary",
-  })
-  button.iconElement.textContent = "AIFX"
+  });
+  button.iconElement.textContent = "AIFX";
 
   // Add a click handler
   button.element.addEventListener("click", () => {
-    handleClickRender(app)
-  })
-  buttons.push(button)
+    handleClickRender(app);
+  });
+  buttons.push(button);
 
   const buttonSettings = new ComfyButton({
     icon: "wand", // you can use an emoji or leave blank
@@ -120,11 +130,11 @@ function addButtons() {
     app,
     enabled: true,
     classList: "comfyui-button comfyui-menu-mobile-collapse primary",
-  })
-  buttonSettings.iconElement.textContent = "⚙️"
-  buttons.push(buttonSettings)
+  });
+  buttonSettings.iconElement.textContent = "⚙️";
+  buttons.push(buttonSettings);
   // Create popup menu using native DOM methods
-  const menuElement = document.createElement("menu")
+  const menuElement = document.createElement("menu");
   menuElement.style.cssText = `
     list-style: none;
     padding: 8px 0;
@@ -134,28 +144,28 @@ function addButtons() {
     border: 1px solid var(--border-color, #444);
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  `
+  `;
 
   // API Key input field as first item
-  const apiKeyLi = document.createElement("li")
+  const apiKeyLi = document.createElement("li");
   apiKeyLi.style.cssText = `
     padding: 8px 16px;
     border-bottom: 1px solid var(--border-color, #444);
     margin-bottom: 4px;
-  `
+  `;
 
-  const apiKeyLabel = document.createElement("label")
-  apiKeyLabel.textContent = "API KEY"
+  const apiKeyLabel = document.createElement("label");
+  apiKeyLabel.textContent = "API KEY";
   apiKeyLabel.style.cssText = `
     display: block;
     margin-bottom: 4px;
     font-size: 12px;
     color: var(--input-text, #ccc);
-  `
+  `;
 
-  const apiKeyInput = document.createElement("input")
-  apiKeyInput.type = "text"
-  apiKeyInput.placeholder = "Enter your API key"
+  const apiKeyInput = document.createElement("input");
+  apiKeyInput.type = "text";
+  apiKeyInput.placeholder = "Enter your API key";
   apiKeyInput.style.cssText = `
     width: 100%;
     padding: 4px 8px;
@@ -165,17 +175,21 @@ function addButtons() {
     color: var(--input-text, #ccc);
     font-size: 12px;
     margin-bottom: 8px;
-  `
+  `;
 
   // Load saved API key from localStorage
-  const savedApiKey = localStorage.getItem("aifx-api-key")
+  const savedApiKey = localStorage.getItem("aifx-api-key");
   if (savedApiKey) {
+<<<<<<< HEAD
     apiKeyInput.value = savedApiKey
     console.log("created button with ",apiKeyInput.value)
+=======
+    apiKeyInput.value = savedApiKey;
+>>>>>>> 32a7d5048d5844e5ecec58cd564a04a116071d78
   }
 
-  const saveButton = document.createElement("button")
-  saveButton.textContent = "Save"
+  const saveButton = document.createElement("button");
+  saveButton.textContent = "Save";
   saveButton.style.cssText = `
     width: 100%;
     padding: 4px 8px;
@@ -185,31 +199,31 @@ function addButtons() {
     color: var(--input-text, #ccc);
     cursor: pointer;
     font-size: 12px;
-  `
+  `;
 
   saveButton.addEventListener("click", () => {
-    localStorage.setItem("aifx-api-key", apiKeyInput.value)
+    localStorage.setItem("aifx-api-key", apiKeyInput.value);
     // Visual feedback
-    const originalText = saveButton.textContent
-    saveButton.textContent = "Saved!"
-    saveButton.style.backgroundColor = "#4a9eff"
+    const originalText = saveButton.textContent;
+    saveButton.textContent = "Saved!";
+    saveButton.style.backgroundColor = "#4a9eff";
     setTimeout(() => {
-      saveButton.textContent = originalText
-      saveButton.style.backgroundColor = "var(--comfy-menu-bg, #1e1e1e)"
-    }, 1000)
-  })
+      saveButton.textContent = originalText;
+      saveButton.style.backgroundColor = "var(--comfy-menu-bg, #1e1e1e)";
+    }, 1000);
+  });
 
   saveButton.addEventListener("mouseenter", () => {
-    saveButton.style.backgroundColor = "var(--comfy-menu-bg)"
-  })
+    saveButton.style.backgroundColor = "var(--comfy-menu-bg)";
+  });
   saveButton.addEventListener("mouseleave", () => {
-    saveButton.style.backgroundColor = "var(--comfy-menu-bg, #1e1e1e)"
-  })
+    saveButton.style.backgroundColor = "var(--comfy-menu-bg, #1e1e1e)";
+  });
 
-  apiKeyLi.appendChild(apiKeyLabel)
-  apiKeyLi.appendChild(apiKeyInput)
-  apiKeyLi.appendChild(saveButton)
-  menuElement.appendChild(apiKeyLi)
+  apiKeyLi.appendChild(apiKeyLabel);
+  apiKeyLi.appendChild(apiKeyInput);
+  apiKeyLi.appendChild(saveButton);
+  menuElement.appendChild(apiKeyLi);
   /* 
   // Settings menu item
   const settingsLi = document.createElement("li")
@@ -239,9 +253,9 @@ function addButtons() {
   menuElement.appendChild(settingsLi)
  */
   // GitHub menu item
-  const githubLi = document.createElement("li")
-  const githubButton = document.createElement("button")
-  githubButton.innerHTML = "Github"
+  const githubLi = document.createElement("li");
+  const githubButton = document.createElement("button");
+  githubButton.innerHTML = "Github";
   githubButton.style.cssText = `
     width: 100%;
     padding: 8px 16px;
@@ -252,18 +266,18 @@ function addButtons() {
     display: flex;
     align-items: center;
     gap: 8px;
-  `
+  `;
   githubButton.addEventListener("click", () => {
-    window.open("https://github.com/aifx-art", "_blank")
-  })
+    window.open("https://github.com/aifx-art", "_blank");
+  });
   githubButton.addEventListener("mouseenter", () => {
-    githubButton.style.backgroundColor = "var(--comfy-menu-bg)"
-  })
+    githubButton.style.backgroundColor = "var(--comfy-menu-bg)";
+  });
   githubButton.addEventListener("mouseleave", () => {
-    githubButton.style.backgroundColor = "transparent"
-  })
-  githubLi.appendChild(githubButton)
-  menuElement.appendChild(githubLi)
+    githubButton.style.backgroundColor = "transparent";
+  });
+  githubLi.appendChild(githubButton);
+  menuElement.appendChild(githubLi);
 
   buttonSettings.withPopup(
     new ComfyPopup(
@@ -274,16 +288,16 @@ function addButtons() {
       menuElement
     ),
     "click"
-  )
+  );
 
   // REGISTER THE BUTTON
 
   // Wrap in a button group (required by ComfyUI’s menu system)
-  simpleButtonGroup = new ComfyButtonGroup(...buttons)
+  simpleButtonGroup = new ComfyButtonGroup(...buttons);
 
   // Insert before the settings group in the top bar
   if (app.menu?.settingsGroup?.element) {
-    app.menu.settingsGroup.element.before(simpleButtonGroup.element)
+    app.menu.settingsGroup.element.before(simpleButtonGroup.element);
   }
 }
 
@@ -303,7 +317,7 @@ app.registerExtension({
       id: "runWorkflow",
       label: "Run Workflow",
       function: () => {
-        handleClickRender(app)
+        handleClickRender(app);
       },
     },
   ],
@@ -315,12 +329,12 @@ app.registerExtension({
   //     }
   //   ],
   async setup() {
-    addButtons()
+    addButtons();
 
     //console.log("extension running")
     //alert("Setup complete!")
   },
-})
+});
 
 /*
 // SIDEBAR
