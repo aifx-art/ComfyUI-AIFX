@@ -7,17 +7,10 @@ import { ComfyPopup } from "../../scripts/ui/components/popup.js";
 let simpleButtonGroup = null;
 
 async function postRender(data) {
-<<<<<<< HEAD
   const savedApiKey = localStorage.getItem("aifx-api-key")
   alert(savedApiKey)
   let render = JSON.stringify(data)
   console.log("render", render)
-=======
-  const savedApiKey = localStorage.getItem("aifx-api-key");
-  alert("API KEY", savedApiKey);
-  let render = JSON.stringify(data);
-  console.log("render", render);
->>>>>>> 32a7d5048d5844e5ecec58cd564a04a116071d78
   let res = await fetch("https://api.aifxart.com/network-render", {
     //credentials: "include",
     headers: {
@@ -180,12 +173,8 @@ function addButtons() {
   // Load saved API key from localStorage
   const savedApiKey = localStorage.getItem("aifx-api-key");
   if (savedApiKey) {
-<<<<<<< HEAD
     apiKeyInput.value = savedApiKey
     console.log("created button with ",apiKeyInput.value)
-=======
-    apiKeyInput.value = savedApiKey;
->>>>>>> 32a7d5048d5844e5ecec58cd564a04a116071d78
   }
 
   const saveButton = document.createElement("button");
