@@ -43,7 +43,7 @@ async function handleClickLoad(app) {
 }
 
 window.addEventListener('message', (event) => {
-  //console.log(event)
+  console.log(event)
   // Verify origin for security
   // if (event.origin !== 'https://expected-client-domain.com') {
   //   return;
