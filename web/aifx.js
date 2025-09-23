@@ -236,6 +236,7 @@ function addButtons() {
   `;
 
   saveButton.addEventListener("click", () => {
+    console.log(apiKeyInput.value)
     localStorage.setItem("aifx-api-key", apiKeyInput.value);
     // Visual feedback
     const originalText = saveButton.textContent;
